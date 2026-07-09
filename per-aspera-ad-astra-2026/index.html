@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <meta name="googlebot" content="noindex,nofollow,noarchive">
+    <meta name="theme-color" content="#100c17">
+    <meta name="description" content="一封只通过 URL 抵达的信">
+    <title>远方来信</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="sky" aria-hidden="true"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+
+    <main>
+        <section class="hero" aria-labelledby="letter-title">
+            <div class="hero-copy">
+                <p class="eyebrow">PER ASPERA / AD ASTRA</p>
+                <h1 id="letter-title">远方来信</h1>
+                <p class="hero-note">给即将毕业、也即将奔向更远星光的你。</p>
+                <div class="hero-actions">
+                    <a class="primary-action" href="#letter">开始读信</a>
+                    <span id="daysTogether" class="days-together">我们一起走过的第 -- 天</span>
+                </div>
+            </div>
+
+            <div class="memory-stage" aria-label="我们的记忆相册">
+                <div class="photo-rail" id="photoRail"></div>
+                <div class="ring-scene" aria-hidden="true">
+                    <span class="ring-text">PER ASPERA</span>
+                    <span class="ring-core">AD ASTRA</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="letter" class="letter-section">
+            <div class="scroll-line" aria-hidden="true"><span id="scrollFill"></span></div>
+
+            <article class="letter-panel letter-flow">
+                <p>寒来暑往，我们已经不知不觉一起走过了快三个年头，转眼间也到了和你说毕业快乐的时候。</p>
+                <p>海边的绚烂烟花仍在眼前跳动，一路走来的欢声笑语、苦情涩意渐渐地沉淀在厚重的时间中。我对你的喜欢、对你的爱也越来越沉淀在我们的记忆相册之中。</p>
+                <p>在戒指里，我其实最开始想写的就是与爱情有关的词语，但是我想了良久才决定现在这一版。我们两个性格可能都不够好，未来的旅途想必也有坎坷（当然我希望可以没有！），比起歌颂爱情，我更希望能与你一直共同进步、共同玩乐、共同做各种我们喜欢的事情、共同克服我们会面对的各种问题。</p>
+                <p class="inline-vow">PER ASPERA / AD ASTRA</p>
+                <p>更远的未来，我还有好多、好多想和你一起做的事情。一起去更多地方旅游、一起拍更多好看的照片、一起出更多的 cosplay、一起玩更多的游戏。</p>
+                <p>想和你手牵手记录日出；和你一起穿上毕业学位服拍搞怪照片；把你抱在怀里裹上毯子，在电视前拿着手柄一起玩游戏；在二人世界里做更甜蜜的事、更涩涩的事；在网吧包夜一起打游戏一起看动画；在工位面前互相给对方写文章加油。好多好多。</p>
+                <p>你即将也要真正开始刻苦学习了，我也希望能在你有任何学习上需要我的时候，第一时间就能想起我；在明年能真正地和我一起成为研究生情侣，在北京开心地度过我们最后的学生时光。</p>
+                <p class="final-line">我会一直在；我始终如一。</p>
+            </article>
+        </section>
+
+        <section class="constellation-section" aria-labelledby="constellation-title">
+            <div>
+                <p class="eyebrow">MEMORY CONSTELLATION</p>
+                <h2 id="constellation-title">记忆相册</h2>
+            </div>
+            <div id="constellation" class="constellation"></div>
+        </section>
+    </main>
+
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+        <button class="lightbox-close" type="button" aria-label="关闭照片">×</button>
+        <img alt="">
+        <p></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

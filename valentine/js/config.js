@@ -8,8 +8,8 @@ const Config = {
     
     // Default read-only configuration (for viewing photos)
     DEFAULT_CONFIG: {
-        username: 'tsunanami2576',
-        repo: 'tsunanami2576.github.io',
+        username: 'tsunami2576',
+        repo: 'tsunami2576.github.io',
         photoPath: 'valentine/assets/photos',
         token: null // No token for read-only mode
     },
