@@ -1,6 +1,15 @@
 const PHOTO_JSON = "../valentine/assets/photos/photos.json";
 const PHOTO_BASE = "../valentine/assets/photos/";
 const START_DATE = new Date("2023-10-17T00:00:00+08:00");
+const FEATURED_PHOTOS = [
+    { src: "assets/featured/ring.jpg", date: "戒指里的星光", alt: "戒指特写" },
+    { src: "assets/featured/fireworks.jpg", date: "海边的烟花", alt: "海边烟花" },
+    { src: "assets/featured/graduation.jpg", date: "毕业快乐", alt: "毕业照片" },
+    { src: "assets/featured/seaside.jpg", date: "一起去看海", alt: "海边合照" },
+    { src: "assets/featured/sunrise.jpg", date: "一起记录日出", alt: "日出照片" },
+    { src: "assets/featured/ad-astra-card.jpg", date: "PER ASPERA", alt: "星光卡片" },
+    { src: "assets/featured/ad-astra-dream.jpg", date: "AD ASTRA", alt: "星光画面" }
+];
 
 const railPositions = [
     ["2%", "6%", "-10deg"],
@@ -10,6 +19,16 @@ const railPositions = [
     ["54%", "44%", "-12deg"],
     ["78%", "48%", "10deg"],
     ["28%", "70%", "-4deg"]
+];
+
+const featuredPositions = [
+    ["left", "8%", "-14deg"],
+    ["right", "17%", "11deg"],
+    ["left", "31%", "8deg"],
+    ["right", "43%", "-10deg"],
+    ["left", "57%", "-7deg"],
+    ["right", "68%", "13deg"],
+    ["left", "80%", "6deg"]
 ];
 
 const canvas = document.getElementById("sky");
@@ -89,6 +108,25 @@ function makePhotoButton(photo) {
     return button;
 }
 
+function makeFeaturedPhoto(photo, index) {
+    const button = document.createElement("button");
+    const [side, top, rotation] = featuredPositions[index % featuredPositions.length];
+    button.type = "button";
+    button.className = `featured-photo ${side}`;
+    button.style.setProperty("--top", top);
+    button.style.setProperty("--r", rotation);
+    button.dataset.date = photo.date;
+
+    const img = document.createElement("img");
+    img.src = photo.src;
+    img.alt = photo.alt;
+    img.loading = "lazy";
+    button.appendChild(img);
+    button.addEventListener("click", () => openLightbox(photo));
+
+    return button;
+}
+
 function renderRail(photos) {
     const rail = document.getElementById("photoRail");
     const selected = photos.slice(-7);
@@ -120,6 +158,11 @@ function renderConstellation(photos) {
     target.replaceChildren(...selected.map(makePhotoButton));
 }
 
+function renderFeaturedPhotos() {
+    const target = document.getElementById("featuredPhotoField");
+    target.replaceChildren(...FEATURED_PHOTOS.map(makeFeaturedPhoto));
+}
+
 async function loadPhotos() {
     try {
         const response = await fetch(PHOTO_JSON, { cache: "no-store" });
@@ -138,18 +181,21 @@ async function loadPhotos() {
 
 function openLightbox(photo) {
     const box = document.getElementById("lightbox");
+    const card = box.querySelector(".lightbox-card");
     const img = box.querySelector("img");
     const caption = box.querySelector("p");
 
     img.src = photo.src;
     img.alt = photo.alt;
     caption.textContent = photo.date;
+    card.style.transform = "";
     box.classList.add("is-open");
     box.setAttribute("aria-hidden", "false");
 }
 
 function closeLightbox() {
     const box = document.getElementById("lightbox");
+    box.querySelector(".lightbox-card").style.transform = "";
     box.classList.remove("is-open");
     box.setAttribute("aria-hidden", "true");
 }
@@ -189,6 +235,16 @@ function initInteractions() {
             closeLightbox();
         }
     });
+    document.getElementById("lightbox").addEventListener("pointermove", (event) => {
+        const card = event.currentTarget.querySelector(".lightbox-card");
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / Math.max(rect.width, 1) - 0.5;
+        const y = (event.clientY - rect.top) / Math.max(rect.height, 1) - 0.5;
+        card.style.transform = `rotateX(${-y * 8}deg) rotateY(${x * 10}deg)`;
+    }, { passive: true });
+    document.getElementById("lightbox").addEventListener("pointerleave", (event) => {
+        event.currentTarget.querySelector(".lightbox-card").style.transform = "";
+    });
     document.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
@@ -208,5 +264,6 @@ drawSky();
 updateCounter();
 revealPanels();
 initInteractions();
+renderFeaturedPhotos();
 loadPhotos();
 updateScrollLine();
