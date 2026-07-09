@@ -1,6 +1,6 @@
 const PHOTO_JSON = "../valentine/assets/photos/photos.json";
 const PHOTO_BASE = "../valentine/assets/photos/";
-const START_DATE = new Date("2023-10-17T00:00:00+08:00");
+const START_DATE = new Date("2023-11-19T00:00:00+08:00");
 const FEATURED_PHOTOS = [
     { src: "assets/featured/ring.jpg", date: "戒指里的星光", alt: "戒指特写" },
     { src: "assets/featured/fireworks.jpg", date: "海边的烟花", alt: "海边烟花" },
@@ -170,7 +170,7 @@ async function loadPhotos() {
             throw new Error(`HTTP ${response.status}`);
         }
         const photos = normalizePhotos(await response.json());
-        renderRail(photos);
+        renderRail(FEATURED_PHOTOS);
         renderConstellation(photos);
     } catch (error) {
         console.warn("Unable to load memory photos:", error);
@@ -187,7 +187,7 @@ function openLightbox(photo) {
 
     img.src = photo.src;
     img.alt = photo.alt;
-    caption.textContent = photo.date;
+    caption.textContent = "";
     card.style.transform = "";
     box.classList.add("is-open");
     box.setAttribute("aria-hidden", "false");
