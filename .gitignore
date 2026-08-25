@@ -1,15 +1,1 @@
 upload/
-phone-src/node_modules/
-phone-src/coverage/
-phone-src/playwright-report/
-phone-src/test-results/
-phone-src/.private-passphrase
-phone-src/.private-content.json
-
-# 旧私人素材永不入库（2026-08-25 历史清理）
-valentine/
-per-aspera-ad-astra-2026/
-Love_files/
-Love.html
-*.mp3
-phone/assets/*.jpg

@@ -30,7 +30,6 @@ jobs:
         run: |
           mkdir _site
           cp .nojekyll CNAME index.html styles.css script.js _site/
-          cp -R phone _site/phone
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v4
         with:
