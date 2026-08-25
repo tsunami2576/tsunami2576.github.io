@@ -197,15 +197,21 @@ footer{
 </section>
 
 <section id="current" class="current-grid">
-  <div class="cur-box now"><h3>现在在哪</h3><p>质感补强轮完成，旋转/侧键/App 开合/Home 键全部重做。</p></div>
-  <div class="cur-box work"><h3>正在做什么</h3><p>等待用户对补强轮的实际体验反馈。</p></div>
-  <div class="cur-box stuck"><h3>卡在哪</h3><p>公开 Git 历史仍含旧素材，清理需确认。</p></div>
-  <div class="cur-box next"><h3>下一步</h3><p>Quick Panel、Notification Shade 与 App Switcher。</p></div>
+  <div class="cur-box now"><h3>现在在哪</h3><p>仓库已重建为无私人历史的单提交；质感补强轮完成。</p></div>
+  <div class="cur-box work"><h3>正在做什么</h3><p>等待 raw CDN 旧对象失效（需授权删库重建或联系 Support）。</p></div>
+  <div class="cur-box stuck"><h3>卡在哪</h3><p>PAT 缺 Administration 权限，无法自动删库重建清 CDN 缓存。</p></div>
+  <div class="cur-box next"><h3>下一步</h3><p>清空 raw 残留后，开始 Quick Panel / Shade / Switcher。</p></div>
 </section>
 
 <section id="timeline">
   <h2>时间线 <span style="font-size:12.5px;color:var(--muted);font-weight:400">（最近 15 次会话，新的在前）</span></h2>
   <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot doing"></div>
+      <div class="tl-head"><time>2026-08-25</time><span class="tl-tag">历史清理</span></div>
+      <p>仓库重建为单提交并强推；Pages 私人路径全部 404；gitignore 封旧素材。</p>
+      <details><summary>残留</summary><p>raw CDN 对旧 SHA 仍 200；需授权删库重建或 Support GC。</p></details>
+    </div>
     <div class="tl-item">
       <div class="tl-dot done"></div>
       <div class="tl-head"><time>2026-08-25</time><span class="tl-tag">质感补强</span></div>
@@ -255,7 +261,7 @@ footer{
   <table class="data-table">
     <thead><tr><th>事项</th><th style="width:90px">等级</th><th style="width:190px">应对</th><th style="width:90px">状态</th></tr></thead>
     <tbody>
-      <tr><td>公开 Git 历史仍可恢复旧页面的原始私人素材</td><td><span class="pill pill-high">高</span></td><td>Pages 已排除旧目录；待确认后清理历史或迁移私有源</td><td><span class="pill pill-active">待确认</span></td></tr>
+      <tr><td>公开 Git 历史已重建为单提交，clone/fetch 无法再取得任何私人对象</td><td><span class="pill pill-low">低</span></td><td>仅 raw CDN 对已知旧 SHA 短期缓存；删库重建或 Support GC 后归零</td><td><span class="pill pill-active">应对中</span></td></tr>
       <tr><td>横屏转化在不同浏览器能力不一致</td><td><span class="pill pill-mid">中</span></td><td>方向锁定仅增强，核心布局自适应</td><td><span class="pill pill-active">应对中</span></td></tr>
     </tbody>
   </table>
@@ -271,9 +277,10 @@ footer{
     <li class="done">实现横竖屏转化与双 Edition 切换<span class="who">2026-08-25</span></li>
     <li class="done">完成桌面、手机、手机横屏自动化验收<span class="who">2026-08-25</span></li>
     <li class="done">构建并通过 Actions 发布 GitHub Pages<span class="who">2026-08-25</span></li>
-    <li>确认并处理公开 Git 历史中的旧私人素材<span class="who">M1 · 高</span></li>
+    <li class="done">确认并处理公开 Git 历史中的旧私人素材<span class="who">2026-08-25</span></li>
     <li class="done">动效补强：旋转编排、侧键、App 开合、Home 键<span class="who">2026-08-25</span></li>
     <li class="done">实现 App 路由、进度与 Edition 持久化<span class="who">2026-08-25</span></li>
+    <li>清除 raw CDN 对旧 SHA 的缓存（删库重建或 Support GC）<span class="who">M1 · 高</span></li>
     <li>实现 Quick Panel、Notification Shade 与 App Switcher<span class="who">M1</span></li>
     <li>补齐 PWA 更新、错误边界与离线状态<span class="who">M1</span></li>
   </ol>
@@ -305,6 +312,6 @@ footer{
   本文件由 progress-tracker v2 维护 · 打开即读，无需联网
 </footer>
 
-<!-- AUDIT: 2026-08-25 | timeline 4/15 | decisions 8/20 | size ~17KB/80KB -->
+<!-- AUDIT: 2026-08-25 | timeline 5/15 | decisions 8/20 | size ~17KB/80KB -->
 </body>
 </html>
